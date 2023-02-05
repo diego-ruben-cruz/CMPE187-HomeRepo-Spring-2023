@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 class GumballMachine {
     private float balance; // Stores valid coins and accumulates based on user input
-    private ArrayList<String> invalidCoins; // Stores invalid coins to be returned with dispenseChange method
+    private ArrayList<String> invalidCoins = new ArrayList<String>(); // Stores invalid coins to be returned with dispenseChange method
 
     /**
      * Adds a nickel to the balance of the machine
@@ -93,7 +93,8 @@ class GumballMachine {
      */
     public void dispenseChange() {
         System.out.println("Change dispensed: $" + balance); // prints out the balance of the machine
-        if (invalidCoins.size() > 0) { // Checks if any invalid coins were input into the machine
+        balance = 0f;
+        if (invalidCoins.isEmpty() == false) { // Checks if any invalid coins were input into the machine
             System.out.println("List of invalid coins returned:");
             for (int i = 0; i < invalidCoins.size(); i++) { // loop that prints out list of invalid coins that were
                                                             // input into the machine
