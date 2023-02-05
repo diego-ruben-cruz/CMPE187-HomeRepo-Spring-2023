@@ -15,8 +15,8 @@ import java.util.ArrayList;
  * Date: 4 February 2023 
  */
 class GumballMachine {
-    private float balance; // Stores valid coins and accumulates
-    private ArrayList<String> invalidCoins;
+    private float balance; // Stores valid coins and accumulates based on user input
+    private ArrayList<String> invalidCoins; // Stores invalid coins to be returned with dispenseChange method
 
     /**
      * Adds a nickel to the balance of the machine
@@ -65,10 +65,10 @@ class GumballMachine {
      * the balance.
      */
     public void dispenseRed() {
-        if (balance >= 0.05f) {
+        if (balance >= 0.05f) { // checks if there are enough funds to purchase red gumball
             System.out.println("Red Gumball dispensed");
             balance = balance - 0.05f;
-        } else {
+        } else { // occurs if there are not enough funds in the machine
             System.out.println("No Gumball dispensed, not enough funds");
         }
         this.displayBalance(); // For debugging purposes
@@ -79,33 +79,35 @@ class GumballMachine {
      * the balance
      */
     public void dispenseYellow() {
-        if (balance >= 0.10f) {
+        if (balance >= 0.10f) { // checks if there are enough funds to purchase yellow gumball
             System.out.println("Yellow Gumball Dispensed");
             balance = balance - 0.10f;
-        } else {
+        } else { // occurs if there are not enough funds in the machine
             System.out.println("No Gumball dispensed, not enough funds");
         }
         this.displayBalance(); // For debugging purposes
     }
 
     /**
-     * Displays the balance in the machine, mainly used for debugging purposes
-     */
-    public void displayBalance() {
-        System.out.println("Current Balance: $" + balance);
-    }
-
-    /**
      * Returns the change to the user
      */
     public void dispenseChange() {
-        System.out.println("Change dispensed: $" + balance);
-        if (invalidCoins.size() > 0) {
+        System.out.println("Change dispensed: $" + balance); // prints out the balance of the machine
+        if (invalidCoins.size() > 0) { // Checks if any invalid coins were input into the machine
             System.out.println("List of invalid coins returned:");
-            for (int i = 0; i < invalidCoins.size(); i++) {
+            for (int i = 0; i < invalidCoins.size(); i++) { // loop that prints out list of invalid coins that were
+                                                            // input into the machine
                 System.out.println(invalidCoins.get(i));
             }
         }
+    }
+
+    /**
+     * Developer tool for testing, not necessary for CLI, though nice to have
+     * Displays the balance in the machine, mainly used for debugging purposes
+     */
+    public void displayBalance() {
+        System.out.println("Current Balance: $" + balance); // prints out balance to the cmd line
     }
 
 }
