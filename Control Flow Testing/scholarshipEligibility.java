@@ -1,5 +1,5 @@
 /*
- * Description: Basic codebase for determining the eligibility of a student.
+ * Description: Basic codebase for determining the eligibility of a student for a scholarship.
  * 
  * Member names:
  * Diego Cruz
@@ -67,6 +67,13 @@ class scholarshipEligibility {
         }
     }
 
+    /**
+     * Operation to determine student eligibility for the scholarship
+     * Takes into account all the "OR" possibilities described in the requirements.
+     * 
+     * @return A string that can be sent to the console that communicates whether
+     *         the student is eligible for the scholarship.
+     */
     public String determineEligibility() {
         if (isOfAge() && isCaliforniaResident()) {
             return "The Student is eligible for the scholarship.";
