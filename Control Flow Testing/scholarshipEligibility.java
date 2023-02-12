@@ -22,6 +22,7 @@ class scholarshipEligibility {
     private boolean proofOfVolunteering;
     private float householdIncome;
 
+
     /**
      * Boolean operation to determine if student falls between ages 18-24, inclusive
      * 
@@ -60,7 +61,7 @@ class scholarshipEligibility {
      * @return
      */
     public boolean deansConsideration() {
-        if (isOfAge() && isCaliforniaResident() == false && householdIncome < 5000f) {
+        if (isOfAge() && !isCaliforniaResident() && householdIncome < 5000f ) {
             return true;
         } else {
             return false;
@@ -74,13 +75,22 @@ class scholarshipEligibility {
      * @return A string that can be sent to the console that communicates whether
      *         the student is eligible for the scholarship.
      */
-    public String determineEligibility() {
+    public int determineEligibility(int studentAge,boolean twoYearResidency,boolean sixMonthsWorking,
+    boolean oneYearParentResidency,boolean proofOfVolunteering,float householdIncome) {
+       
+        this.studentAge = studentAge;
+        this.twoYearResidency = twoYearResidency;
+        this.sixMonthsWorking = sixMonthsWorking;
+        this.oneYearParentResidency = oneYearParentResidency;
+        this.proofOfVolunteering = proofOfVolunteering;
+        this.householdIncome = householdIncome;
+
         if (isOfAge() && isCaliforniaResident()) {
-            return "The Student is eligible for the scholarship.";
+            return 1;
         } else if (deansConsideration()) {
-            return "The student has been placed under Dean's Consideration for the scholarship.";
+            return 0;
         } else {
-            return "The student is not eligible for this scholarship.";
+            return 2;
         }
     }
 }
