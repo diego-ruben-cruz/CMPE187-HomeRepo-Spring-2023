@@ -1,4 +1,20 @@
 
+/*
+ * Description: 
+ * Basic CLI for the scholarship checker program
+ * Follows the instructions highlighted in blue on the Canvas Assignment page
+ *  
+ * Member names:
+ * Diego Cruz
+ * David Huang
+ * Khoa Le
+ * Nhat Tuan Nguyen
+ * 
+ * Course: CMPE 187
+ * Section: 02
+ * Homework: Control Flow 
+ * Date: 11 February 2023 
+ */
 import java.util.Scanner;
 
 class scholarshipCLI {

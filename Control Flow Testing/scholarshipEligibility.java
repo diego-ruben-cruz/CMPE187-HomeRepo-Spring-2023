@@ -1,5 +1,7 @@
 /*
- * Description: Basic codebase for determining the eligibility of a student for a scholarship.
+ * Description: 
+ * Basic codebase for determining the eligibility of a student for a scholarship
+ * Follows the instructions highlighted in blue on the Canvas Assignment page
  * 
  * Member names:
  * Diego Cruz
