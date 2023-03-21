@@ -1,1 +1,12 @@
+package cmpe187dft;
+
+public class dFT {
+
+    // Given two sorted integer arrays A and B
+
+int [] A = new int [];
+int [] B = new int [];
+
+
+}
 
