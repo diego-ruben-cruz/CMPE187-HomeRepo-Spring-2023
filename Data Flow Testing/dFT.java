@@ -1,4 +1,4 @@
-package cmpe187dft;
+// package cmpe187dft;
 
 import java.util.*;
 
@@ -23,60 +23,73 @@ public class dFT {
     public int[] getB() {
         return b;
     }
-/** 
-    // overloaded merge function for sort method, NOT for combining sorted array
-    public int[] merge(int[] arr, int start, int mid, int end) {
 
-        int size1 = mid - start;
-        int size2 = end - mid;
+    public void sortArrays() {
+        quickSort(a, 0, a.length - 1);
+        quickSort(b, 0, b.length - 1);
+    }
 
-        int[] arr1 = new int[size1];
-        int[] arr2 = new int[size2];
+    /**
+     * Utility partition function for QuickSort
+     * 
+     * @param toBeSorted The int array to be sorted
+     * @param lowerBound The lower bound for the partition
+     * @param upperBound The upper bound for the partition
+     * @return
+     */
+    static int partition(int[] toBeSorted, int lowerBound, int upperBound) {
+        int pivot = toBeSorted[lowerBound];
+        int m = lowerBound;
 
-        for (int i = 0; i < size1; i++) {
-            arr1[i] = arr[start + i];
-        }
-
-        for (int j = 0; j < size2; j++) {
-            arr2[j] = arr[mid + 1 + j];
-        }
-
-        int i = 0;
-        int j = 0;
-
-        for (int k = 0; k < end; k++) {
-            if (i < size1 && arr1[i] <= arr2[j]) {
-                arr[k] = arr1[i];
-                i++;
-            } else if (i < size1 && j < size2) {
-                arr[k] = arr2[j];
-                j++;
-            } else if (i == size1 && j < size2) {
-                arr[k] = arr2[j];
-                j++;
-            } else {
-                arr[k] = arr1[i];
-                i++;
+        // Checks each element in the unsorted region
+        for (int k = lowerBound + 1; k <= upperBound; k++) {
+            if (toBeSorted[k] < pivot) {
+                m++;
+                swap(toBeSorted, k, m);
             }
         }
-        return arr;
+
+        // swaps pivot with a[m]
+        swap(toBeSorted, lowerBound, m);
+
+        // returns the index of pivot
+        return m;
     }
 
-    // in case not sorted, complementary function to sort input array. Start = 0 and end = arr.length - 1
-    public int[] sort(int[] arr, int start, int end) {
-        if (start < end) {
-            int mid = (start + end) / 2;
-            sort(arr, start, mid);
-            sort(arr, mid + 1, end);
-            merge(arr, start, mid, end);
-            return arr;
+    // Swap operation for an integer array
+    static void swap(int[] inputArray, int currentIndex, int prevIndex) {
+        int temp;
+        temp = inputArray[prevIndex];
+        inputArray[prevIndex] = inputArray[currentIndex];
+        inputArray[currentIndex] = temp;
+    }
+
+    /**
+     * QuickSort implementation
+     * 
+     * Best Case O(n log(n))
+     * Worst Case O(n^2)
+     * 
+     * Stable
+     * 
+     * @param toBeSorted
+     * @param lowerBound
+     * @param upperBound
+     */
+    static void quickSort(int[] toBeSorted, int lowerBound, int upperBound) {
+        if (lowerBound < upperBound) {
+            // Finds the pivot index with partition function
+            int pivotIndex = partition(toBeSorted, lowerBound, upperBound);
+
+            // Recursive calls to sort both portions
+            quickSort(toBeSorted, lowerBound, pivotIndex - 1);
+            quickSort(toBeSorted, pivotIndex + 1, upperBound);
         }
     }
-    */
 
     // merge two arrays, assumes they are already sorted. Returns combined array
     public int[] merge() {
-
+        sortArrays();
         int size = a.length + b.length;
 
         int[] c = new int[size];
@@ -84,6 +97,7 @@ public class dFT {
         int j = 0;
         int k = 0;
 
+        // MergeSort loop for combining both arrays while sorting them
         for (int i = 0; i < size; i++) {
             if (j < a.length && a[j] <= b[k]) {
                 c[i] = a[j];
@@ -110,12 +124,25 @@ public class dFT {
         // int[] arrayZ = new int[] {1,5,7,3,5,7,3,5,8,9,0,3,45,56,34,6,7,30};
 
         dFT dFTTest = new dFT(arrayX, arrayY);
+        System.out.println("Elements in array x: " + Arrays.toString(dFTTest.getA()));
+        System.out.println("Elements in array y: " + Arrays.toString(dFTTest.getB()));
+        System.out.println("Elements in combined array z: " + Arrays.toString(dFTTest.merge()));
 
-        System.out.println("Elements in array a: " + Arrays.toString(dFTTest.getA()));
-        System.out.println("Elements in array b: " + Arrays.toString(dFTTest.getB()));
+        // // Testing of quickSort
+        // int[] arrayA = new int[] { 11, 7, 2, 1 };
+        // int[] arrayB = new int[] { 29, 16, 13, 7, 3 };
 
-        System.out.println("Elements in combined array c: " + Arrays.toString(dFTTest.merge()));
-        
-        // System.out.println(Arrays.toString(merge(arrayZ, 0, arrayZ.length - 1)));
+        // dFT quickSortTest = new dFT(arrayA, arrayB);
+        // System.out.println("\nElements in array a BEFORE running quicksort: " +
+        // Arrays.toString(quickSortTest.getA()));
+        // System.out.println(
+        // "Elements in array b BEFORE running quicksort: " +
+        // Arrays.toString(quickSortTest.getB()) + "\n");
+        // quickSortTest.sortArrays();
+        // System.out.println("Elements in array a after running quicksort: " +
+        // Arrays.toString(quickSortTest.getA()));
+        // System.out.println("Elements in array b after running quicksort: " +
+        // Arrays.toString(quickSortTest.getB()));
+
     }
 }
