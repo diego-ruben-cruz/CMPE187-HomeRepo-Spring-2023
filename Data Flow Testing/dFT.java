@@ -89,7 +89,8 @@ public class dFT {
 
     // merge two arrays, assumes they are already sorted. Returns combined array
     public int[] merge() {
-        sortArrays();
+        // sortArrays(); // added additional sorting utility to allow for input of
+        // unsorted arrays
         int size = a.length + b.length;
 
         int[] c = new int[size];
