@@ -4,29 +4,9 @@ import java.util.*;
 
 public class dFT {
 
-    // given two sorted integer arrays A and B
-    int[] a;
-    int[] b;
-
-    // constructor
-    public dFT(int[] x, int[] y) {
-        a = x;
-        b = y;
-    }
-
-    // getter for array toString method
-    public int[] getA() {
-        return a;
-    }
-
-    // getter for array toString method
-    public int[] getB() {
-        return b;
-    }
-
-    public void sortArrays() {
-        quickSort(a, 0, a.length - 1);
-        quickSort(b, 0, b.length - 1);
+    static void sortArrays(int[] arrayOne, int[] arrayTwo) {
+        quickSort(arrayOne, 0, arrayOne.length - 1);
+        quickSort(arrayTwo, 0, arrayTwo.length - 1);
     }
 
     /**
@@ -88,10 +68,10 @@ public class dFT {
     }
 
     // merge two arrays, assumes they are already sorted. Returns combined array
-    public int[] merge() {
+    static int[] merge(int[] arrayOne, int[] arrayTwo) {
         // sortArrays(); // added additional sorting utility to allow for input of
         // unsorted arrays
-        int size = a.length + b.length;
+        int size = arrayOne.length + arrayTwo.length;
 
         int[] c = new int[size];
 
@@ -100,17 +80,17 @@ public class dFT {
 
         // MergeSort loop for combining both arrays while sorting them
         for (int i = 0; i < size; i++) {
-            if (j < a.length && a[j] <= b[k]) {
-                c[i] = a[j];
+            if (j < arrayOne.length && arrayOne[j] <= arrayTwo[k]) {
+                c[i] = arrayOne[j];
                 j++;
-            } else if (j < a.length && k < b.length) {
-                c[i] = b[k];
+            } else if (j < arrayOne.length && k < arrayTwo.length) {
+                c[i] = arrayTwo[k];
                 k++;
-            } else if (j == a.length && k < b.length) {
-                c[i] = b[k];
+            } else if (j == arrayOne.length && k < arrayTwo.length) {
+                c[i] = arrayTwo[k];
                 k++;
             } else {
-                c[i] = a[j];
+                c[i] = arrayOne[j];
                 j++;
             }
         }
@@ -124,26 +104,24 @@ public class dFT {
         int[] arrayY = new int[] { 3, 7, 13, 16, 29 };
         // int[] arrayZ = new int[] {1,5,7,3,5,7,3,5,8,9,0,3,45,56,34,6,7,30};
 
-        dFT dFTTest = new dFT(arrayX, arrayY);
-        System.out.println("Elements in array x: " + Arrays.toString(dFTTest.getA()));
-        System.out.println("Elements in array y: " + Arrays.toString(dFTTest.getB()));
-        System.out.println("Elements in combined array z: " + Arrays.toString(dFTTest.merge()));
+        System.out.println("Elements in array x: " + Arrays.toString(arrayX));
+        System.out.println("Elements in array y: " + Arrays.toString(arrayY));
+        System.out.println("Elements in combined array z: " + Arrays.toString(merge(arrayX, arrayY)));
 
-        // // Testing of quickSort
-        // int[] arrayA = new int[] { 11, 7, 2, 1 };
-        // int[] arrayB = new int[] { 29, 16, 13, 7, 3 };
+        // Testing of quickSort
+        int[] arrayA = new int[] { 11, 7, 2, 1 };
+        int[] arrayB = new int[] { 29, 16, 13, 7, 3 };
 
-        // dFT quickSortTest = new dFT(arrayA, arrayB);
-        // System.out.println("\nElements in array a BEFORE running quicksort: " +
-        // Arrays.toString(quickSortTest.getA()));
-        // System.out.println(
-        // "Elements in array b BEFORE running quicksort: " +
-        // Arrays.toString(quickSortTest.getB()) + "\n");
-        // quickSortTest.sortArrays();
-        // System.out.println("Elements in array a after running quicksort: " +
-        // Arrays.toString(quickSortTest.getA()));
-        // System.out.println("Elements in array b after running quicksort: " +
-        // Arrays.toString(quickSortTest.getB()));
+        System.out.println("\nElements in array a BEFORE running quicksort: " +
+                Arrays.toString(arrayA));
+        System.out.println(
+                "Elements in array b BEFORE running quicksort: " +
+                        Arrays.toString(arrayB));
+        sortArrays(arrayA, arrayB); // This performs quickSort on both arrays.
+        System.out.println("Elements in array a AFTER running quicksort: " +
+                Arrays.toString(arrayA));
+        System.out.println("Elements in array b AFTER running quicksort: " +
+                Arrays.toString(arrayB));
 
     }
 }
